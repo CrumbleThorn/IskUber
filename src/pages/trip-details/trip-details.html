@@ -1,0 +1,39 @@
+<!--
+  This is a course requirement for CS 192 Software Engineering II
+  under the supervision of Asst. Prof. Ma. Rowena C. Solamo of the
+  Department of Computer Science, College of Engineering,
+  University of the Philippines, Diliman for the AY 2015-2016
+
+  Code author: Luigi del Rosario
+
+  Code History:
+  Programmer            Date        Description
+  Luigi del Rosario     2/9/18      File generation, added side panel, added text
+
+  File creation date: 2/9/18
+  Development Group: Luigi del Rosario, Nicole Bilaw, Gabe Tamayo
+  Client group: CS 192
+  Purpose of code: view of trip details
+-->
+<ion-header>
+
+  <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    <ion-title>Trip: {{ trip.name }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-card>
+      <ion-card-content>
+        <h1>{{ trip.name }} </h1>
+        <b> Rotation Period: </b> {{ trip.rotation_period }} <br>
+        <b> Orbital Period: </b> {{ trip.orbital_period }} <br>
+        <b> Climate: </b> {{ trip.climate }} <br>
+      </ion-card-content>
+    </ion-card>
+</ion-content>

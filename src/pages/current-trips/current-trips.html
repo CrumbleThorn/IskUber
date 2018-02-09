@@ -1,0 +1,37 @@
+<!--
+  This is a course requirement for CS 192 Software Engineering II
+  under the supervision of Asst. Prof. Ma. Rowena C. Solamo of the
+  Department of Computer Science, College of Engineering,
+  University of the Philippines, Diliman for the AY 2015-2016
+
+  Code author: Luigi del Rosario
+
+  Code History:
+  Programmer            Date        Description
+  Luigi del Rosario     2/9/18      File generation, added side panel and list
+
+  File creation date: 2/9/18
+  Development Group: Luigi del Rosario, Nicole Bilaw, Gabe Tamayo
+  Client group: CS 192
+  Purpose of code: view of current trips
+-->
+<ion-header>
+  <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    <ion-title>Your Current Trips</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <p>
+        Here is the list of "trips", taken from the Star Wars API (swapi.co):
+    </p>
+    <ion-list>
+      <button ion-item *ngFor="let trip of (trips | async)?.results" (click)="openDetails(trip)">
+        {{ trip.name }}
+      </button>
+    </ion-list>
+</ion-content>
