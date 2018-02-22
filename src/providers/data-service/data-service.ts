@@ -8,7 +8,9 @@
 
   Code History:
   Programmer            Date        Description
-  Luigi del Rosario     2/8/18      File generation
+  Luigi del Rosario     2/8/18      File generation, added "getDrivers" function
+  Luigi del Rosario     2/9/18      Added "getTrips" function
+  Luigi del Rosario     2/22/18     Added "getPassengers" function
 
   File creation date: 2/8/18
   Development Group: Luigi del Rosario, Nicole Bilaw, Gabe Tamayo
@@ -29,5 +31,8 @@ export class DataServiceProvider {
   }
   getTrips() {
     return this.http.get('https://swapi.co/api/planets');
+  }
+  getPassengers() {
+    return this.http.get('https://randomuser.me/api/?results=6');
   }
 }

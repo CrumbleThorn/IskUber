@@ -11,6 +11,7 @@
   Luigi del Rosario     2/7/18      File generation
   Luigi del Rosario     2/8/18      Added pages
   Luigi del Rosario     2/9/18      Added pages
+  Luigi del Rosario     2/22/18     Added Passenger List/Details pages
 
   File creation date: 2/7/18
   Development Group: Luigi del Rosario, Nicole Bilaw, Gabe Tamayo
@@ -29,6 +30,8 @@ import { DriverListPage } from '../pages/driver-list/driver-list';
 import { DriverDetailsPage } from '../pages/driver-details/driver-details';
 import { CurrentTripsPage } from '../pages/current-trips/current-trips';
 import { TripDetailsPage } from '../pages/trip-details/trip-details';
+import { PassengerListPage } from '../pages/passenger-list/passenger-list'
+import { PassengerDetailsPage } from '../pages/passenger-details/passenger-details'
 import { HomePage } from '../pages/home/home';
 import { HttpClientModule } from '@angular/common/http';
 import { DataServiceProvider } from '../providers/data-service/data-service';
@@ -40,6 +43,8 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
     DriverDetailsPage,
     CurrentTripsPage,
     TripDetailsPage,
+    PassengerListPage,
+    PassengerDetailsPage,
     HomePage
   ],
   imports: [
@@ -54,6 +59,8 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
     DriverDetailsPage,
     CurrentTripsPage,
     TripDetailsPage,
+    PassengerListPage,
+    PassengerDetailsPage,
     HomePage
   ],
   providers: [

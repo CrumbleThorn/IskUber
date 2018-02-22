@@ -9,6 +9,7 @@
   Code History:
   Programmer            Date        Description
   Luigi del Rosario     2/7/18      File generation
+  Luigi del Rosario     2/22/18     Changed colors
 
   File creation date: 2/7/18
   Development Group: Luigi del Rosario, Nicole Bilaw, Gabe Tamayo
@@ -52,8 +53,8 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
+  primary:    #cc0000,
+  secondary:  #009933,
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222
@@ -104,3 +105,7 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+$toolbar-ios-background: #cc0000;
+$toolbar-md-background: #cc0000;
+$toolbar-wp-background: #cc0000;

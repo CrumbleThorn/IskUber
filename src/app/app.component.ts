@@ -10,6 +10,7 @@
   Programmer            Date        Description
   Luigi del Rosario     2/7/18      File generation
   Luigi del Rosario     2/8/18      Added pages
+  Luigi del Rosario     2/22/18     Divided pages into "main" and "driver", added passenger pages
 
   File creation date: 2/7/18
   Development Group: Luigi del Rosario, Nicole Bilaw, Gabe Tamayo
@@ -23,6 +24,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { DriverListPage } from '../pages/driver-list/driver-list';
+import { PassengerListPage } from '../pages/passenger-list/passenger-list';
 import { CurrentTripsPage } from '../pages/current-trips/current-trips';
 import { HomePage } from '../pages/home/home';
 
@@ -32,7 +34,8 @@ import { HomePage } from '../pages/home/home';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage = HomePage;
-  pages: Array<{title: string, component: any}>;
+  pagesMain: Array<{title: string, component: any}>;
+  pagesDriver: Array<{title: string, component: any}>;
 
   constructor(platform: Platform, public menu: MenuController, statusBar: StatusBar, splashScreen: SplashScreen) {
 
@@ -42,10 +45,15 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
-    this.pages = [
+
+    this.pagesMain = [
       { title: 'Home', component: HomePage },
       { title: 'Driver List', component: DriverListPage },
-      { title: 'Your Current Trips', component: CurrentTripsPage }
+      { title: 'Your Current Trips', component: CurrentTripsPage },
+    ];
+
+    this.pagesDriver = [
+      { title: 'Your Passengers', component: PassengerListPage }
     ];
   }
   openPage(page) {

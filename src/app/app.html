@@ -9,6 +9,7 @@
   Code History:
   Programmer            Date        Description
   Luigi del Rosario     2/7/18      File generation, adding side panel
+  Luigi del Rosario     2/22/18     Changed color of toolbar
 
   File creation date: 2/7/18
   Development Group: Luigi del Rosario, Nicole Bilaw, Gabe Tamayo
@@ -18,14 +19,20 @@
 <ion-menu [content]="content">
 
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="secondary">
       <ion-title>Pages</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
     <ion-list>
-      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      <button ion-item *ngFor="let p of pagesMain" (click)="openPage(p)">
+        {{p.title}}
+      </button>
+      <ion-list-header>
+        Driver Pages
+      </ion-list-header>
+      <button ion-item *ngFor="let p of pagesDriver" (click)="openPage(p)">
         {{p.title}}
       </button>
     </ion-list>
