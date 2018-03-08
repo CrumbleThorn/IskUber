@@ -8,7 +8,8 @@
 
   Code History:
   Programmer            Date        Description
-  Luigi del Rosario     2/22/18      File generation, added side panel, added list items
+  Luigi del Rosario     2/22/18     File generation, added side panel, added list items
+  Luigi del Rosario     3/8/18      Edited text
 
   File creation date: 2/22/18
   Development Group: Luigi del Rosario, Nicole Bilaw, Gabe Tamayo
@@ -20,14 +21,14 @@
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-    <ion-title>Your Passengers</ion-title>
+    <ion-title>Passenger Requests</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
     <p>
-        Here is the list of your current passengers, taken from uinames.com:
+        Here is the list of your current passenger requests, taken from uinames.com:
     </p>
     <ion-list>
       <button ion-item *ngFor="let passenger of (passengers | async)?.results" (click)="openDetails(passenger)">

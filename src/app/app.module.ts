@@ -32,6 +32,7 @@ import { CurrentTripsPage } from '../pages/current-trips/current-trips';
 import { TripDetailsPage } from '../pages/trip-details/trip-details';
 import { PassengerListPage } from '../pages/passenger-list/passenger-list'
 import { PassengerDetailsPage } from '../pages/passenger-details/passenger-details'
+import { SendRequestPage } from '../pages/send-request/send-request'
 import { HomePage } from '../pages/home/home';
 import { HttpClientModule } from '@angular/common/http';
 import { DataServiceProvider } from '../providers/data-service/data-service';
@@ -45,6 +46,7 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
     TripDetailsPage,
     PassengerListPage,
     PassengerDetailsPage,
+    SendRequestPage,
     HomePage
   ],
   imports: [
@@ -61,6 +63,7 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
     TripDetailsPage,
     PassengerListPage,
     PassengerDetailsPage,
+    SendRequestPage,
     HomePage
   ],
   providers: [

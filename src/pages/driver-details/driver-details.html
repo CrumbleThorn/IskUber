@@ -36,7 +36,7 @@
         <b> Height: </b> {{ driver.height }} <br>
         <b> Mass: </b> {{ driver.mass }} <br>
         <b> Birth Year: </b> {{ driver.birth_year }} <br>
-        <button ion-button color="secondary">Send Request</button>
+        <button ion-button color="secondary" (click) = "sendRequest(this.driver)">Send Request</button>
       </ion-card-content>
     </ion-card>
 </ion-content>
