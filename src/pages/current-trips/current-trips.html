@@ -27,11 +27,11 @@
 
 <ion-content padding>
     <p>
-        Here is the list of "trips", taken from the Star Wars API (swapi.co):
+        Here is a list of your current trips.
     </p>
     <ion-list>
       <button ion-item *ngFor="let trip of (trips | async)?.results" (click)="openDetails(trip)">
-        {{ trip.name }}
+        <b>{{ trip.driverName }}</b>, to {{ trip.destination }}
       </button>
     </ion-list>
 </ion-content>

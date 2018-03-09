@@ -27,12 +27,9 @@
 
 
 <ion-content padding>
-    <p>
-        Here is the list of "drivers", taken from the Star Wars API (swapi.co):
-    </p>
     <ion-list>
       <button ion-item *ngFor="let driver of (drivers | async)?.results" (click)="openDetails(driver)">
-        {{ driver.name }}
+        {{ driver.driverName }}
       </button>
     </ion-list>
 </ion-content>

@@ -10,6 +10,7 @@
   Programmer            Date        Description
   Luigi del Rosario     2/7/18      File generation, adding side panel
   Luigi del Rosario     2/9/18      Added button
+  Luigi del Rosario     3/9/18      Changed data displayed
 
   File creation date: 2/7/18
   Development Group: Luigi del Rosario, Nicole Bilaw, Gabe Tamayo
@@ -22,7 +23,7 @@
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-    <ion-title>{{ driver.name }}</ion-title>
+    <ion-title>{{ driver.driverName }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -31,12 +32,12 @@
 <ion-content padding>
     <ion-card>
       <ion-card-content>
-        <h1>{{ driver.name }} </h1>
-        <b> Gender: </b> {{ driver.gender }} <br>
-        <b> Height: </b> {{ driver.height }} <br>
-        <b> Mass: </b> {{ driver.mass }} <br>
-        <b> Birth Year: </b> {{ driver.birth_year }} <br>
-        <button ion-button color="secondary" (click) = "sendRequest(this.driver)">Send Request</button>
+        <h1>{{ driver.driverName }}</h1>
+        <b> Vehicle Make: </b> {{ driver.vMake }} <br>
+        <b> Vehicle Model: </b> {{ driver.vModel }} <br>
+        <b> Vehicle Color: </b> {{ driver.vColor }} <br>
+        <b> Plate No.: </b> {{ driver.plateNo }} <br>
+        <button ion-button color="secondary" (click) = "sendRequest(this.driver)" block>Send Request</button>
       </ion-card-content>
     </ion-card>
 </ion-content>

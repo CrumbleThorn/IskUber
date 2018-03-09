@@ -15,6 +15,7 @@
   Client group: CS 192
   Purpose of code: script for send requests page
 */
+import { DataServiceProvider } from '../../providers/data-service/data-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
@@ -26,31 +27,54 @@ import { AlertController } from 'ionic-angular';
 })
 export class SendRequestPage {
     req = {
-        driverName: '',
-        time: '',
-        pickup: '',
-        dest: '',
+        userID: 1,
+        driverID: 1,
+        type: 'REQUEST',
+        schedID: 2,
+        comment: ''
     };
     driver: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public dataServiceProvider: DataServiceProvider) {
         this.driver = this.navParams.get('driver');
-        this.req.driverName = this.driver.name
     }
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad SendRequestPage');
     }
     sendForm() {
-        console.log(this.req)
+        this.dataServiceProvider.sendReq(this.req)
         this.showAlert()
         this.navCtrl.pop()
         this.navCtrl.pop()
     }
+    showConfirm() {
+        let confirm = this.alertCtrl.create({
+            title: 'Confirm Send',
+            message: 'Confirm sending of passenger request to ' + this.driver.name + '?',
+            buttons: [
+                {
+                    text:' Cancel',
+                    role: 'cancel',
+                    handler: () => {
+                        console.log('Form submission cancelled');
+                    }
+                },
+                {
+                    text: 'Send',
+                    handler: () => {
+                        this.sendForm();
+                        console.log('Form submission sent');
+                    }
+                }
+            ]
+        });
+        confirm.present();
+    }
     showAlert() {
         let alert = this.alertCtrl.create({
             title: 'Success!',
-            subTitle: 'You have sent a passenger request to ' + this.driver.name + '.',
+            subTitle: 'You have sent a passenger request to ' + this.driver.driverName + '.',
             buttons: ['OK']
         });
         alert.present();

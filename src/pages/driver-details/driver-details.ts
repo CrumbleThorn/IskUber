@@ -20,7 +20,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { Observable } from 'rxjs/Observable';
 import { SendRequestPage } from '../send-request/send-request';
 
 @IonicPage()

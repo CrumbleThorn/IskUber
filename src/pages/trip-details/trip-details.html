@@ -21,7 +21,7 @@
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-    <ion-title>Trip: {{ trip.name }}</ion-title>
+    <ion-title>Your Trip</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -30,10 +30,10 @@
 <ion-content padding>
     <ion-card>
       <ion-card-content>
-        <h1>{{ trip.name }} </h1>
-        <b> Rotation Period: </b> {{ trip.rotation_period }} <br>
-        <b> Orbital Period: </b> {{ trip.orbital_period }} <br>
-        <b> Climate: </b> {{ trip.climate }} <br>
+        <h1>{{ trip.driverName }} </h1>
+        <b> Time: </b> {{ trip.time }} <br>
+        <b> Departure Point: </b> {{ trip.departurePoint }} <br>
+        <b> Destination: </b> {{ trip.destination }} <br>
       </ion-card-content>
     </ion-card>
 </ion-content>

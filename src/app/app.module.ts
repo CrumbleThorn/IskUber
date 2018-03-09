@@ -24,6 +24,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { UserAgent } from '@ionic-native/user-agent';
 
 import { MyApp } from './app.component';
 import { DriverListPage } from '../pages/driver-list/driver-list';
@@ -69,6 +70,7 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
   providers: [
     StatusBar,
     SplashScreen,
+    UserAgent,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataServiceProvider
   ]

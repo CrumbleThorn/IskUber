@@ -27,7 +27,7 @@
 
 <ion-content padding>
     <ion-list>
-        <form (ngSubmit)="sendForm()">
+        <form (ngSubmit)="showConfirm()">
             <ion-item>
                 <ion-label floating>Pickup Time</ion-label>
                 <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="req.time" [ngModelOptions]="{standalone:true}"></ion-datetime>
