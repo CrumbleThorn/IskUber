@@ -8,7 +8,8 @@
 
   Code History:
   Programmer            Date        Description
-  Luigi del Rosario     2/22/18      File generation, added side panel
+  Luigi del Rosario     2/22/18     File generation, added side panel
+  Luigi del Rosario     3/22/18     Added accept/reject buttons
 
   File creation date: 2/22/18
   Development Group: Luigi del Rosario, Nicole Bilaw, Gabe Tamayo
@@ -23,7 +24,7 @@
       </button>
     <ion-title>
         <div text-capitalize>
-            {{ passenger.name.first }} {{ passenger.name.last }}
+            {{ passenger.passengerName }}
         </div>
     </ion-title>
   </ion-navbar>
@@ -35,10 +36,11 @@
     <ion-card>
       <ion-card-content>
           <div text-capitalize>
-            <h1>{{ passenger.name.first }} {{ passenger.name.last }}</h1> <br>
-            {{ passenger.location.city }} <br>
-            <b> Gender: </b> {{ passenger.gender }} <br>
-            <b> Cellphone: </b> {{ passenger.cell }} <br>
+            <h1>{{ passenger.passengerName }}</h1> <br>
+            <div text-center>
+                <button ion-button color="secondary" (click)="showConfirm('accept')">Accept Request</button>
+                <button ion-button color="light" (click)="showConfirm('reject')">Reject</button>
+            </div>
         </div>
       </ion-card-content>
     </ion-card>

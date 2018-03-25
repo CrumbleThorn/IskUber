@@ -26,15 +26,20 @@
 
   <ion-content>
     <ion-list>
+        <ion-list-header>
+            {{ usp.user.legalName }}
+        </ion-list-header>
       <button ion-item *ngFor="let p of pagesMain" (click)="openPage(p)">
         {{p.title}}
       </button>
       <ion-list-header>
-        Driver Pages
+        Driver Options
       </ion-list-header>
       <button ion-item *ngFor="let p of pagesDriver" (click)="openPage(p)">
         {{p.title}}
       </button>
+      <ion-list-header>User Options</ion-list-header>
+      <button ion-item (click)="openPage(changeUser)">Change User</button>
     </ion-list>
   </ion-content>
 

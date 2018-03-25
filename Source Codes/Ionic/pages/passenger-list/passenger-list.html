@@ -32,9 +32,7 @@
     </p>
     <ion-list>
       <button ion-item *ngFor="let passenger of (passengers | async)?.results" (click)="openDetails(passenger)">
-        <div text-capitalize>
-            {{ passenger.name.first }} {{ passenger.name.last }}
-        </div>
+            {{ passenger.passengerName }}
       </button>
     </ion-list>
 </ion-content>

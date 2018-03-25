@@ -16,6 +16,7 @@
   Purpose of code: script for send requests page
 */
 import { DataServiceProvider } from '../../providers/data-service/data-service';
+import { UserServiceProvider } from '../../providers/user-service/user-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
@@ -27,16 +28,18 @@ import { AlertController } from 'ionic-angular';
 })
 export class SendRequestPage {
     req = {
+        type: 'REQUEST',
         userID: 1,
         driverID: 1,
-        type: 'REQUEST',
         schedID: 2,
-        comment: ''
+        comment: '',
     };
     driver: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public dataServiceProvider: DataServiceProvider) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public dataServiceProvider: DataServiceProvider, public usp: UserServiceProvider) {
         this.driver = this.navParams.get('driver');
+        this.req.driverID = this.driver.driverID
+        this.req.userID = usp.user.userID
     }
 
     ionViewDidLoad() {

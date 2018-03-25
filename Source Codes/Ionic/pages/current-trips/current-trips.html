@@ -9,6 +9,7 @@
   Code History:
   Programmer            Date        Description
   Luigi del Rosario     2/9/18      File generation, added side panel and list
+  Luigi del Rosario     3/23/18     Changed intention of file
 
   File creation date: 2/9/18
   Development Group: Luigi del Rosario, Nicole Bilaw, Gabe Tamayo
@@ -20,14 +21,14 @@
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-    <ion-title>Your Current Trips</ion-title>
+    <ion-title>Active Trips</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
     <p>
-        Here is a list of your current trips.
+        List of all active trips. Click on a trip to view its details and send a request.
     </p>
     <ion-list>
       <button ion-item *ngFor="let trip of (trips | async)?.results" (click)="openDetails(trip)">
