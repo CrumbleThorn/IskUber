@@ -26,10 +26,13 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding style="background-image: url('assets/imgs/bg.jpg');">
     <ion-list>
       <button ion-item *ngFor="let driver of (drivers | async)?.results" (click)="openDetails(driver)">
-        {{ driver.driverName }}
+        <ion-avatar item-start>
+          <img src="https://cs-192-iskuber-crumblethorn.c9users.io{{driver.userImage}}">
+        </ion-avatar>
+        <h2>{{ driver.driverName }}</h2>
       </button>
     </ion-list>
 </ion-content>

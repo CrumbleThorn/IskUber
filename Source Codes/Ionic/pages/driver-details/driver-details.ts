@@ -16,10 +16,12 @@
   Client group: CS 192
   Purpose of code: script for driver details
 */
+import { DataServiceProvider } from '../../providers/data-service/data-service';
 
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { Observable } from 'rxjs/Observable';
 import { SendRequestPage } from '../send-request/send-request';
 
 @IonicPage()
@@ -28,14 +30,21 @@ import { SendRequestPage } from '../send-request/send-request';
   templateUrl: 'driver-details.html',
 })
 export class DriverDetailsPage {
+  driverTrips: Observable<any>;
   driver: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dsp: DataServiceProvider) {
     this.driver = this.navParams.get('driver');
+    console.log('driver: ', this.driver);
+    this.driverTrips = dsp.getDriverTrips(this.driver.driverID);
+    this.driverTrips
+      .subscribe(data => {
+        console.log('success? ', data)
+      })
   }
 
-  sendRequest(driver) {
-    this.navCtrl.push(SendRequestPage, {driver: driver});
+  sendRequest(trip, driver) {
+    this.navCtrl.push(SendRequestPage, {trip: trip, driver: driver});
   }
 
   ionViewDidLoad() {

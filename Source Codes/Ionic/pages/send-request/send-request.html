@@ -20,30 +20,33 @@
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-    <ion-title>Send Request to {{ driver.name }}</ion-title>
+    <ion-title>Send Request</ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
-    <ion-list>
-        <form (ngSubmit)="showConfirm()">
-            <ion-item>
-                <ion-label floating>Pickup Time</ion-label>
-                <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="req.time" [ngModelOptions]="{standalone:true}"></ion-datetime>
-            </ion-item>
+<ion-content padding style="background-color:#DFDFDF;">
+  <ion-card>
+    <ion-card-header>
+      <h1>Request Information</h1>
+    </ion-card-header>
+    <ion-card-content>
+      <b>Driver: </b> {{ driver.driverName }}<br>
+      <b> Time: </b> {{ trip.time }} <br>
+      <b> Departure Point: </b> {{ trip.departurePoint }} <br>
+      <b> Destination: </b> {{ trip.destination }} <br><br>
+      Please indicate below if your source and destination is different from above, as well as other special requests:
+      <ion-list>
+          <form (ngSubmit)="showConfirm()">
 
-            <ion-item>
-                <ion-label floating>Pickup point</ion-label>
-                <ion-input type="text" [(ngModel)]="req.pickup" [ngModelOptions]="{standalone:true}"></ion-input>
-            </ion-item>
+              <ion-item>
+                  <ion-label floating>Comments</ion-label>
+                  <ion-textarea [(ngModel)]="req.comment" name="comment"></ion-textarea>
+              </ion-item>
 
-            <ion-item>
-                <ion-label floating>Destination</ion-label>
-                <ion-input type="text" [(ngModel)]="req.dest" [ngModelOptions]="{standalone:true}"></ion-input>
-            </ion-item>
-
-            <button ion-button type="submit" block>SUBMIT REQUEST</button>
-        </form>
-    </ion-list>
+              <button ion-button type="submit" block>SUBMIT REQUEST</button>
+          </form>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

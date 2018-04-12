@@ -16,6 +16,7 @@
   Purpose of code: script for send requests page
 */
 import { DataServiceProvider } from '../../providers/data-service/data-service';
+import { UserServiceProvider } from '../../providers/user-service/user-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
@@ -27,31 +28,41 @@ import { AlertController } from 'ionic-angular';
 })
 export class SendRequestPage {
     req = {
-        userID: 1,
-        driverID: 1,
+        userID: 0,
+        driverID: 0,
         type: 'REQUEST',
-        schedID: 2,
-        comment: ''
+        schedID: 0,
+        comment: '',
+        isResolved: 0
     };
+    trip: any;
     driver: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public dataServiceProvider: DataServiceProvider) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public dataServiceProvider: DataServiceProvider, public usp: UserServiceProvider) {
+        this.trip = this.navParams.get('trip');
         this.driver = this.navParams.get('driver');
+
+        // assign to req
+        this.req.driverID = this.trip.driverID;
+        this.req.userID = usp.user.userID;
+        this.req.schedID = this.trip.schedID;
     }
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad SendRequestPage');
+        console.log('driver: ', this.driver);
+        console.log('trip: ', this.trip);
     }
     sendForm() {
-        this.dataServiceProvider.sendReq(this.req)
-        this.showAlert()
-        this.navCtrl.pop()
-        this.navCtrl.pop()
+        this.dataServiceProvider.sendReq(this.req);
+        this.showAlert();
+        this.navCtrl.pop();
+        this.navCtrl.pop();
     }
     showConfirm() {
         let confirm = this.alertCtrl.create({
             title: 'Confirm Send',
-            message: 'Confirm sending of passenger request to ' + this.driver.name + '?',
+            message: 'Confirm sending of passenger request to ' + this.driver.driverName + '?',
             buttons: [
                 {
                     text:' Cancel',
@@ -72,6 +83,7 @@ export class SendRequestPage {
         confirm.present();
     }
     showAlert() {
+        console.log(this.req);
         let alert = this.alertCtrl.create({
             title: 'Success!',
             subTitle: 'You have sent a passenger request to ' + this.driver.driverName + '.',

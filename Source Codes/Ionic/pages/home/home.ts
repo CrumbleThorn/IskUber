@@ -17,6 +17,12 @@
 */
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { UserServiceProvider } from '../../providers/user-service/user-service';
+
+import { DriverListPage } from '../driver-list/driver-list';
+import { PassengerListPage } from '../passenger-list/passenger-list';
+import { TripListPage } from '../trip-list/trip-list';
+import { CurrentTripsPage } from '../current-trips/current-trips'
 
 @IonicPage()
 @Component({
@@ -24,12 +30,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'home.html',
 })
 export class HomePage {
+    user: any;
+    constructor(public navCtrl: NavController, public navParams: NavParams,
+        public usp: UserServiceProvider) {
+        this.user = usp.user;
+    }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad HomePage');
+    }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
-  }
-
+    openPage(page){
+      console.log(page)
+        if(page==0){
+            this.navCtrl.setRoot(TripListPage).catch(() => console.log('Error loading page.'));
+        } else if (page==1) {
+            this.navCtrl.setRoot(DriverListPage).catch(() => console.log('Error loading page.'));
+        } else if (page == 2) {
+            this.navCtrl.setRoot(CurrentTripsPage).catch(() => console.log('Error loading page.'));
+        } else if (page == 3) {
+            this.navCtrl.setRoot(PassengerListPage).catch(() => console.log('Error loading page.'));
+        }
+    }
 }

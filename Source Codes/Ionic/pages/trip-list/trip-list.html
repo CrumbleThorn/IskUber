@@ -22,41 +22,26 @@
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-    <ion-title>Your Trips</ion-title>
+    <ion-title>Active Trips</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding style="background-image: url('assets/imgs/bg.jpg');">
-    <ion-card>
+  <ion-card>
     <ion-card-content>
       <p>
-          Here are all the trips you're a part of.
+          List of all active trips. Click on a trip to view its details and send a request.
       </p>
       <ion-list>
-        <ion-item *ngFor="let trip of (trips | async)?.results">
-          <ion-grid>
-            <ion-row>
-              <ion-col col-auto>
-                <ion-avatar item-start>
-                  <img src="https://cs-192-iskuber-crumblethorn.c9users.io{{trip.driverImage}}">
-                </ion-avatar>
-              </ion-col>
-              <ion-col>
-                <ion-row><h2>{{trip.driverName}}</h2></ion-row>
-                <ion-row><p>{{trip.driverContactNo}}</p></ion-row>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-auto>
-                {{ trip.departurePoint }} <ion-icon name="arrow-round-forward"></ion-icon> {{ trip.destination }}
-              </ion-col>
-              <ion-col text-right>
-                {{trip.time}}
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-item>
+        <button ion-item *ngFor="let trip of (trips | async)?.results" (click)="openDetails(trip)">
+          <ion-grid><ion-row>
+            <ion-col col-auto>
+              {{ trip.departurePoint }} <ion-icon name="arrow-round-forward"></ion-icon> {{ trip.destination }}
+            </ion-col>
+            <ion-col text-right> <p>{{ trip.time }}</p> </ion-col>
+          </ion-row></ion-grid> 
+        </button>
       </ion-list>
     </ion-card-content>
   </ion-card>

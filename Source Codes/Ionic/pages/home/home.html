@@ -11,34 +11,70 @@
   Luigi del Rosario     2/7/18      File generation, added side panel
   Luigi del Rosario     2/8/18      Added text
   Luigi del Rosario     2/22/18     Updated layout, changed text
+  Luigi del Rosario     3/22/18     Changed text
+  Luigi del Rosario     3/26/28     Changed UI, added icons and images
 
   File creation date: 2/7/18
   Development Group: Luigi del Rosario, Nicole Bilaw, Gabe Tamayo
   Client group: CS 192
   Purpose of code: view of home page
 -->
+
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>IskUber</ion-title>
-  </ion-navbar>
+    <ion-navbar><ion-grid><ion-row>
+        <ion-col col-2>
+            <button ion-button menuToggle left>
+                <ion-icon name="menu"></ion-icon>
+            </button>
+        </ion-col>
+        <ion-col text-center>
+            <ion-title>
+                <img alt="IskUber" src="assets/imgs/banner.png" width="120px">
+            </ion-title>
+        </ion-col>
+        <ion-col col-2>
+        </ion-col>
+    </ion-row></ion-grid></ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
-    <div text-center>
+<ion-content padding class="card-background-page" style="background-image: url('assets/imgs/bg.jpg');">
+    <div text-center style="color:#FFFFFF;text-shadow: 2px 2px 10px #000000;">
         <br>
-        <h2>This is the home page.</h2>
+        Welcome back,
+        <h1>{{ user.legalName }}!</h1>
     </div>
     <br>
-    More stuff will be added here, but for now, hit the menu on the left to view the list of:
-        <ul>
-            <li>All the drivers in the database</li>
-            <li>Your current trips</li>
-            <li>Your passengers (for drivers)</li>
-        </ul>
-        <br>Go on and get started!
-    
+        <ion-card>
+            <ion-card-header><div style="text-align:left;">Find new trips:</div></ion-card-header>
+            <ion-list>
+                <button ion-item (click)=openPage(0)>
+                    <ion-card>
+                        <img src="assets/imgs/road.jpg">
+                        <div class="card-title" style="text-shadow: 2px 2px 10px #000000;"><ion-icon name="compass"></ion-icon><b>&nbsp;&nbsp;View All Trips</b></div>
+                        <div class="card-subtitle" style="text-shadow: 2px 2px 10px #000000;"><br>See if anyone could pick you up<br>for your next trip!</div>
+                    </ion-card>
+                </button>
+                <button ion-item (click)="openPage(1)">
+                    <ion-card>
+                        <img src="assets/imgs/cars.jpg">
+                        <div class="card-title"style="text-shadow: 2px 2px 10px #000000;"><ion-icon name="ios-people"></ion-icon><b>&nbsp;&nbsp;View All Drivers</b></div>
+                        <div class="card-subtitle" style="text-shadow:2px 2px 5px #000000;"><br>Perhaps you have a friend that<br>could give you a ride?</div>
+                    </ion-card>
+                </button>
+            </ion-list>
+        </ion-card>
+
+        <ion-card style="text-align:left;">
+            <ion-card-header>Manage your account:</ion-card-header>
+            <ion-list>
+                <button ion-item (click)="openPage(2)">
+                        <ion-icon name="briefcase"></ion-icon>&nbsp;&nbsp;Manage Trips
+                </button>
+                <button ion-item (click)="openPage(3)">
+                        <ion-icon name="md-alert"></ion-icon>&nbsp;&nbsp;Manage Passenger Requests
+                </button>
+            </ion-list>
+        </ion-card>
+
 </ion-content>

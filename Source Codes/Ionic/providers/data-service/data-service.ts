@@ -11,7 +11,8 @@
   Luigi del Rosario     2/8/18      File generation, added "getDrivers" function
   Luigi del Rosario     2/9/18      Added "getTrips" function
   Luigi del Rosario     2/22/18     Added "getPassengers" function
-  Luigi del Rosario     3/9/18      Changed URLs
+  Luigi del Rosario     3/9/18      Changed URLs to account for actual DB
+  Luigi del Rosario     3/23/18     Changed URLs to accoutn for new DB framfwork
 
   File creation date: 2/8/18
   Development Group: Luigi del Rosario, Nicole Bilaw, Gabe Tamayo
@@ -19,14 +20,15 @@
   Purpose of code: provider for HTTP services
 */
 import { HttpClient } from '@angular/common/http';
-import { Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { UserAgent } from '@ionic-native/user-agent'
+import { UserServiceProvider } from '../../providers/user-service/user-service';
+
 
 @Injectable()
 export class DataServiceProvider {
 
-  constructor(public http: HttpClient, private userAgent: UserAgent) {
+  constructor(public http: HttpClient, private userAgent: UserAgent, public usp: UserServiceProvider) {
     console.log('Hello DataServiceProvider Provider');
     this.userAgent.set('PhantomJS')
         .then((res: any) => console.log(res))
@@ -34,17 +36,68 @@ export class DataServiceProvider {
   }
 
   getDrivers() {
-    return this.http.get('https://cs-192-iskuber-crumblethorn.c9users.io/getDriverList.php');
+    let params = {'command': 'QUERY', 'spec': 'DRIVERLIST'};
+    return this.http.get('https://cs-192-iskuber-crumblethorn.c9users.io/dbInterface.php', { params: params });
   }
+
+  getDriver(driverID){
+    let params = {'command': 'QUERY', 'spec': 'DRIVERPROFILE', 'driverID': JSON.stringify(driverID)};
+    //let obj = this.http.get('https://cs-192-iskuber-crumblethorn.c9users.io/dbInterface.php', { params: params });
+    //console.log(JSON.stringify(obj));
+    //return obj;
+    return this.http.get('https://cs-192-iskuber-crumblethorn.c9users.io/dbInterface.php', { params: params });
+  }
+
+  getDriverTrips(driverID){
+    let params = {'command': 'QUERY', 'spec': 'DRIVERTRIPS', 'driverID': JSON.stringify(driverID)};
+    return this.http.get('https://cs-192-iskuber-crumblethorn.c9users.io/dbInterface.php', { params: params });
+  }
+
   getTrips() {
-    return this.http.get('https://cs-192-iskuber-crumblethorn.c9users.io/getActiveTrips.php');
+    let params = {'command': 'QUERY', 'spec': 'USERTRIPS', 'passengerID': JSON.stringify(this.usp.user.userID)};
+    return this.http.get('https://cs-192-iskuber-crumblethorn.c9users.io/dbInterface.php', { params: params });
   }
-  getPassengers() {
-    return this.http.get('https://randomuser.me/api/?results=6');
+  getAllTrips() {
+    let params = {'command': 'QUERY', 'spec': 'SCHEDLIST'};
+    return this.http.get('https://cs-192-iskuber-crumblethorn.c9users.io/dbInterface.php', { params: params });
+  }
+
+  getUsers() {
+    let params = {'command': 'QUERY', 'spec': 'USERLIST'};
+    return this.http.get('https://cs-192-iskuber-crumblethorn.c9users.io/dbInterface.php', { params: params });
+  }
+
+  getUser(userID){
+    let params = {'command': 'QUERY', 'spec': 'USERPROFILE', 'userID': JSON.stringify(userID)};
+    return this.http.get('https://cs-192-iskuber-crumblethorn.c9users.io/dbInterface.php', { params: params });
+  }
+
+  getRequests() {
+    let params = {'command': 'QUERY', 'spec': 'DRIVERREQUESTS', 'driverID': JSON.stringify(this.usp.user.userID)};
+    return this.http.get('https://cs-192-iskuber-crumblethorn.c9users.io/dbInterface.php', { params: params });
+  }
+
+  // post functions
+  updateRequest(req, type) {
+      req.type = type
+      console.log(req)
+      let params = {'command': 'INSERT', 'spec':'REQUEST'}
+      this.http.post('https://cs-192-iskuber-crumblethorn.c9users.io/dbInterface.php', JSON.stringify(req), { params: params }).subscribe();
   }
   sendReq(req) {
-      console.log(JSON.stringify(req))
-      console.log('printed req above')
-      this.http.post('https://cs-192-iskuber-crumblethorn.c9users.io/insertIntoDatabase.php', JSON.stringify(req)).subscribe();
+      let params = {'command': 'INSERT', 'spec': 'REQUEST'}
+      this.http.post('https://cs-192-iskuber-crumblethorn.c9users.io/dbInterface.php', JSON.stringify(req), { params: params }).subscribe();
+  }
+
+  resolveRequest(requestID){
+    console.log('HERE IN RESOLVE REQUEST\nRequest ID: ', requestID);
+    let params = {'command': 'MODIFY', 'spec': 'RESOLVE', 'requestID': JSON.stringify(requestID)};
+    return this.http.put('https://cs-192-iskuber-crumblethorn.c9users.io/dbInterface.php', null, { params: params })
+      .subscribe();
+  }
+
+  sendTrip(reqTrip) {
+    let params = {'command': 'INSERT', 'spec': 'TRIP'};
+    this.http.post('https://cs-192-iskuber-crumblethorn.c9users.io/dbInterface.php', JSON.stringify(reqTrip), { params: params }).subscribe();
   }
 }

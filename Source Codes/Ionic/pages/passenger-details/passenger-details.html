@@ -8,7 +8,8 @@
 
   Code History:
   Programmer            Date        Description
-  Luigi del Rosario     2/22/18      File generation, added side panel
+  Luigi del Rosario     2/22/18     File generation, added side panel
+  Luigi del Rosario     3/22/18     Added accept/reject buttons
 
   File creation date: 2/22/18
   Development Group: Luigi del Rosario, Nicole Bilaw, Gabe Tamayo
@@ -22,24 +23,35 @@
         <ion-icon name="menu"></ion-icon>
       </button>
     <ion-title>
-        <div text-capitalize>
-            {{ passenger.name.first }} {{ passenger.name.last }}
-        </div>
+        Passenger Request Details
     </ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-    <ion-card>
-      <ion-card-content>
-          <div text-capitalize>
-            <h1>{{ passenger.name.first }} {{ passenger.name.last }}</h1> <br>
-            {{ passenger.location.city }} <br>
-            <b> Gender: </b> {{ passenger.gender }} <br>
-            <b> Cellphone: </b> {{ passenger.cell }} <br>
+<ion-content padding style="background-color:#AFAFAF;">
+  <ion-card *ngFor="let pass of (passenger | async)?.results">
+    <ion-card-header>Passenger Details</ion-card-header>
+    <ion-card-content>
+        <div text-center>
+          <img class="center" src="https://cs-192-iskuber-crumblethorn.c9users.io{{pass.image}}" style="width:160px;height:160px;border-radius:80px;">
+          <h1>{{ pass.legalName }}</h1>
         </div>
+        <b> Contact Number:</b> {{ pass.contactNo }}
+    </ion-card-content>
+  </ion-card>
+    <ion-card>
+      <ion-card-header>Trip Details</ion-card-header>
+      <ion-card-content>
+          <b> Departure Point: </b> {{ request.departurePoint }} <br>
+          <b> Destination: </b> {{ request.destination }} <br>
+          <br><b>Comments:</b>
+          <p> {{ request.comment }} </p><br>
+          <div text-center>
+              <button ion-button color="secondary" (click)="showConfirm('accept')">Accept Request</button>
+              <button ion-button color="light" (click)="showConfirm('reject')">Reject</button>
+          </div>
       </ion-card-content>
     </ion-card>
 </ion-content>

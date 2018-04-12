@@ -8,17 +8,27 @@
 
   Code History:
   Programmer            Date        Description
-  Luigi del Rosario     2/7/18      File generation
+  Luigi del Rosario     3/22/18     File generation
 
-  File creation date: 2/7/18
+  File creation date: 3/22/18
   Development Group: Luigi del Rosario, Nicole Bilaw, Gabe Tamayo
   Client group: CS 192
-  Purpose of code: main css of driver details
+  Purpose of code: provider for user services
 */
-page-driver-details {
-  .center {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+
+import { Injectable } from '@angular/core';
+
+@Injectable()
+export class UserServiceProvider {
+    public user = {
+        userID: 0,
+        legalName: "Michael Rosen",
+        image: ''
+    }
+  constructor() {
+    console.log('Hello UserServiceProvider Provider');
   }
+    updateUser(usr) {
+        this.user = usr
+    }
 }

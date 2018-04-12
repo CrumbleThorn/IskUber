@@ -9,6 +9,7 @@
   Code History:
   Programmer            Date        Description
   Luigi del Rosario     2/7/18      File generation
+  Luigi del Rosario		3/26/18		Added attributes for inserting images in cards
 
   File creation date: 2/7/18
   Development Group: Luigi del Rosario, Nicole Bilaw, Gabe Tamayo
@@ -16,5 +17,27 @@
   Purpose of code: main css of home page
 */
 page-home {
+	.card-background-page {
+		ion-card {
+			position: relative;
+			text-align: center;
+		}
 
+		.card-title {
+			position: absolute;
+			top: 20%;
+			font-size: 2.0em;
+			width: 100%;
+			font-weight: bold;
+			color: #fff;
+		}
+
+		.card-subtitle {
+			font-size: 1.0em;
+			position: absolute;
+			top: 40%;
+			width: 100%;
+			color: #fff;
+		}
+}
 }

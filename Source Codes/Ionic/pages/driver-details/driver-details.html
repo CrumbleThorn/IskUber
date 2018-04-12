@@ -11,6 +11,7 @@
   Luigi del Rosario     2/7/18      File generation, adding side panel
   Luigi del Rosario     2/9/18      Added button
   Luigi del Rosario     3/9/18      Changed data displayed
+  Luigi del Rosario     3/30/18     Added list of trips.
 
   File creation date: 2/7/18
   Development Group: Luigi del Rosario, Nicole Bilaw, Gabe Tamayo
@@ -29,15 +30,50 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding style="background-color:#AFAFAF;">
     <ion-card>
       <ion-card-content>
-        <h1>{{ driver.driverName }}</h1>
-        <b> Vehicle Make: </b> {{ driver.vMake }} <br>
-        <b> Vehicle Model: </b> {{ driver.vModel }} <br>
-        <b> Vehicle Color: </b> {{ driver.vColor }} <br>
-        <b> Plate No.: </b> {{ driver.plateNo }} <br>
-        <button ion-button color="secondary" (click) = "sendRequest(this.driver)" block>Send Request</button>
+        <div text-center>
+          <img class="center" src="https://cs-192-iskuber-crumblethorn.c9users.io{{driver.userImage}}" style="width:160px;height:160px;border-radius:80px;">
+          <h1>{{ driver.driverName }}</h1>
+          {{ driver.contactNo }}<br><br>
+        </div>
+        <ion-grid><ion-row>
+          <ion-col col-5>
+            <div text-center>
+              <img class="center" src="https://cs-192-iskuber-crumblethorn.c9users.io{{driver.carImage}}" style="width:120px;">
+              <h2>Driver's Vehicle</h2>
+            </div>
+          </ion-col>
+          <ion-col>
+            <b> Make: </b> {{ driver.vMake }} <br>
+            <b> Model: </b> {{ driver.vModel }} <br>
+            <b> Color: </b> {{ driver.vColor }} <br>
+            <b> Plate No.: </b> {{ driver.plateNo }} <br>
+          </ion-col>
+        </ion-row></ion-grid>
       </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-header>
+            <h4>Driver's Trips</h4>
+            Click on a trip to send a request:
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list>
+              <button ion-item *ngFor="let trip of (driverTrips | async)?.results"  (click) = "sendRequest(driver,trip)">
+                <ion-grid><ion-row>
+                  <ion-col col-auto>
+                    {{ trip.departurePoint }} <ion-icon name="arrow-round-forward"></ion-icon> {{ trip.destination }}
+                  </ion-col>
+                  <ion-col>
+                    <div text-right>
+                      {{ trip.time }}
+                    </div>
+                  </ion-col>
+                </ion-row></ion-grid>
+              </button>
+            </ion-list>
+        </ion-card-content>
     </ion-card>
 </ion-content>

@@ -10,6 +10,7 @@
   Programmer            Date        Description
   Luigi del Rosario     2/7/18      File generation, adding side panel
   Luigi del Rosario     2/22/18     Changed color of toolbar
+  Luigi del Rosario     3/26/18     Changed colors, added icons and avatars
 
   File creation date: 2/7/18
   Development Group: Luigi del Rosario, Nicole Bilaw, Gabe Tamayo
@@ -18,26 +19,68 @@
 -->
 <ion-menu [content]="content">
 
-  <ion-header>
-    <ion-toolbar color="secondary">
-      <ion-title>Pages</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <ion-header>
+        <ion-toolbar color="secondary">
+            <ion-title>Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
 
-  <ion-content>
-    <ion-list>
-      <button ion-item *ngFor="let p of pagesMain" (click)="openPage(p)">
-        {{p.title}}
-      </button>
-      <ion-list-header>
-        Driver Pages
-      </ion-list-header>
-      <button ion-item *ngFor="let p of pagesDriver" (click)="openPage(p)">
-        {{p.title}}
-      </button>
-    </ion-list>
-  </ion-content>
+    <ion-content>
+        <ion-list>
+            <ion-item text-center>
+                <img src="https://cs-192-iskuber-crumblethorn.c9users.io{{usp.user.image}}" style="width:160px;height:160px;border-radius:80px;">
+                <h1>{{ usp.user.legalName }}</h1>
+            </ion-item>
+            <button ion-item (click)="openPage(homePage)">
+                <ion-grid><ion-row>
+                    <ion-col col-2><ion-icon name="home"></ion-icon></ion-col>
+                    <ion-col>Home</ion-col>
+                </ion-row></ion-grid>
+            </button>
+            <ion-list-header>
+                <ion-icon name="md-map"></ion-icon>
+                &nbsp;&nbsp;Find New Trips
+            </ion-list-header>
+            <button ion-item (click)="openPage(tripListPage)">
+                <ion-grid><ion-row>
+                    <ion-col col-2><ion-icon name="briefcase"></ion-icon></ion-col>
+                    <ion-col>View All Trips</ion-col>
+                </ion-row></ion-grid>
+            </button>
+            <button ion-item (click)="openPage(driverListPage)">
+                <ion-grid><ion-row>
+                    <ion-col col-2><ion-icon name="people"></ion-icon></ion-col>
+                    <ion-col>View List of Drivers</ion-col>
+                </ion-row></ion-grid>
+            </button>
 
+            <ion-list-header>
+                <ion-icon name="hammer"></ion-icon>&nbsp;&nbsp;Manage Your Account
+            </ion-list-header>
+            <button ion-item (click)="openPage(currentTripsPage)">
+                <ion-grid><ion-row>
+                    <ion-col col-2><ion-icon name="briefcase"></ion-icon></ion-col>
+                    <ion-col>Your Trips</ion-col>
+                </ion-row></ion-grid>
+            </button>
+            <button ion-item (click)="openPage(pendingRequestsPage)">
+                <ion-grid><ion-row>
+                    <ion-col col-2><ion-icon name="alert"></ion-icon></ion-col>
+                    <ion-col>Pending Passenger<br>Requests</ion-col>
+                </ion-row></ion-grid>
+            </button>
+
+            <ion-list-header>
+                <ion-icon name="settings"></ion-icon>&nbsp;&nbsp;Settings
+            </ion-list-header>
+            <button ion-item (click)="openPage(changeUser)">
+                <ion-grid><ion-row>
+                    <ion-col col-2><ion-icon name="person"></ion-icon></ion-col>
+                    <ion-col>Change User</ion-col>
+                </ion-row></ion-grid>
+            </button>
+        </ion-list>
+    </ion-content>
 </ion-menu>
 
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

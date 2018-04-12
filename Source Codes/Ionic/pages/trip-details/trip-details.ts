@@ -15,8 +15,10 @@
   Client group: CS 192
   Purpose of code: script of trip details
 */
+import { DataServiceProvider } from '../../providers/data-service/data-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SendRequestPage } from '../send-request/send-request';
 
 @IonicPage()
 @Component({
@@ -25,9 +27,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TripDetailsPage {
   trip: any;
+  driver: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dsp: DataServiceProvider) {
     this.trip = this.navParams.get('trip');
+    console.log(this.trip.driverID);
+    this.driver = this.navParams.get('driver');
+    /*this.driver = this.dsp.getDriver(this.trip.driverID);
+    this.driver
+      .subscribe(data => {
+        console.log('success? ', data)
+      })*/
+    //this.driver = this.dsp.getAllTrips();
+    console.log(JSON.stringify(this.driver));
+  }
+
+  sendRequest(trip, driver){
+    this.navCtrl.push(SendRequestPage, {trip: trip, driver: driver});
   }
 
   ionViewDidLoad() {

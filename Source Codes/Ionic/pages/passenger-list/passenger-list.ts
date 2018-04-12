@@ -29,14 +29,20 @@ import { PassengerDetailsPage } from '../passenger-details/passenger-details';
   templateUrl: 'passenger-list.html',
 })
 export class PassengerListPage {
-  passengers: Observable<any>;
+  requests: Observable<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataServiceProvider: DataServiceProvider) {
-    this.passengers = this.dataServiceProvider.getPassengers();
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dsp: DataServiceProvider) {
+    this.requests = this.dsp.getRequests();
+    console.log(this.requests);
   }
 
-  openDetails(passenger) {
-    this.navCtrl.push(PassengerDetailsPage, {passenger: passenger});
+  openDetails(request) {
+    let passenger = this.dsp.getUser(request.userID);
+    passenger
+      .subscribe(data => {
+        console.log('success? ', data)
+      })
+    this.navCtrl.push(PassengerDetailsPage, {passenger: passenger, request: request});
   }
 
   ionViewDidLoad() {

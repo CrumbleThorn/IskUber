@@ -21,19 +21,40 @@
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-    <ion-title>Your Trip</ion-title>
+    <ion-title>Trip Details</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-    <ion-card>
+<ion-content padding style="background-color:#AFAFAF;">
+  <ion-card *ngFor="let drv of (driver | async)?.results">
       <ion-card-content>
-        <h1>{{ trip.driverName }} </h1>
-        <b> Time: </b> {{ trip.time }} <br>
-        <b> Departure Point: </b> {{ trip.departurePoint }} <br>
-        <b> Destination: </b> {{ trip.destination }} <br>
+        <div text-center>
+          <img class="center" src="https://cs-192-iskuber-crumblethorn.c9users.io{{drv.userImage}}" style="width:160px;height:160px;border-radius:80px;">
+          <h1>{{ drv.driverName }}</h1>
+          {{ drv.contactNo }}<br><br>
+        </div>
+        <ion-grid><ion-row>
+          <ion-col col-5>
+            <div text-center>
+              <img class="center" src="https://cs-192-iskuber-crumblethorn.c9users.io{{drv.carImage}}" style="width:120px;">
+              <h2>Driver's Vehicle</h2>
+            </div>
+          </ion-col>
+          <ion-col>
+            <b> Make: </b> {{ drv.vMake }} <br>
+            <b> Model: </b> {{ drv.vModel }} <br>
+            <b> Color: </b> {{ drv.vColor }} <br>
+            <b> Plate No.: </b> {{ drv.plateNo }} <br>
+          </ion-col>
+        </ion-row></ion-grid>
+        <br>
+        <div text-center>
+          <h1> {{ trip.departurePoint }} <ion-icon name="arrow-round-forward"></ion-icon> {{ trip.destination }} </h1><br>
+          <p>{{ trip.time }}</p><br><br>
+          <button ion-button color="secondary" (click) = "sendRequest(trip,drv)" block>Send Request</button>
+        </div>
       </ion-card-content>
     </ion-card>
 </ion-content>

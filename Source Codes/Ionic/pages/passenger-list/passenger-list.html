@@ -26,15 +26,17 @@
 </ion-header>
 
 
-<ion-content padding>
-    <p>
-        Here is the list of your current passenger requests, taken from uinames.com:
-    </p>
-    <ion-list>
-      <button ion-item *ngFor="let passenger of (passengers | async)?.results" (click)="openDetails(passenger)">
-        <div text-capitalize>
-            {{ passenger.name.first }} {{ passenger.name.last }}
-        </div>
-      </button>
-    </ion-list>
+<ion-content padding style="background-image: url('assets/imgs/bg.jpg');">
+  <ion-card>
+    <ion-card-content>
+      <p>
+          Tap a request to view details:
+      </p>
+      <ion-list>
+        <button ion-item *ngFor="let request of (requests | async)?.results" (click)="openDetails(request)">
+              <b>{{ request.legalName }}</b>&nbsp;&nbsp;{{ request.departurePoint }} <ion-icon name="arrow-round-forward"></ion-icon> {{ request.destination }}
+        </button>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

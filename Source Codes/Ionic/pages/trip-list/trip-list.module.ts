@@ -8,17 +8,23 @@
 
   Code History:
   Programmer            Date        Description
-  Luigi del Rosario     2/7/18      File generation
+  Luigi del Rosario     2/9/18      File generation
 
   File creation date: 2/7/18
   Development Group: Luigi del Rosario, Nicole Bilaw, Gabe Tamayo
   Client group: CS 192
-  Purpose of code: main css of driver details
+  Purpose of code: module of current trips
 */
-page-driver-details {
-  .center {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-  }
-}
+import { NgModule } from '@angular/core';
+import { IonicPageModule } from 'ionic-angular';
+import { TripListPage } from './trip-list';
+
+@NgModule({
+  declarations: [
+    TripListPage,
+  ],
+  imports: [
+    IonicPageModule.forChild(TripListPage),
+  ],
+})
+export class CurrentTripsPageModule {}
