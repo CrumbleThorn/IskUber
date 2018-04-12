@@ -43,8 +43,8 @@ export class DriverDetailsPage {
       })
   }
 
-  sendRequest(trip, driver) {
-    this.navCtrl.push(SendRequestPage, {trip: trip, driver: driver});
+  sendRequest(trip) {
+    this.navCtrl.push(SendRequestPage, {trip: trip, driver: this.driver});
   }
 
   ionViewDidLoad() {

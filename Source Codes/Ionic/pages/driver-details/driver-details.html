@@ -32,7 +32,9 @@
 
 <ion-content padding style="background-color:#AFAFAF;">
     <ion-card>
+      <ion-card-header>Driver Details</ion-card-header>
       <ion-card-content>
+        <br>
         <div text-center>
           <img class="center" src="https://cs-192-iskuber-crumblethorn.c9users.io{{driver.userImage}}" style="width:160px;height:160px;border-radius:80px;">
           <h1>{{ driver.driverName }}</h1>
@@ -61,7 +63,7 @@
         </ion-card-header>
         <ion-card-content>
             <ion-list>
-              <button ion-item *ngFor="let trip of (driverTrips | async)?.results"  (click) = "sendRequest(driver,trip)">
+              <button ion-item *ngFor="let trip of (driverTrips | async)?.results"  (click) = "sendRequest(trip)">
                 <ion-grid><ion-row>
                   <ion-col col-auto>
                     {{ trip.departurePoint }} <ion-icon name="arrow-round-forward"></ion-icon> {{ trip.destination }}

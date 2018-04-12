@@ -28,7 +28,17 @@
 
 
 <ion-content padding style="background-color:#AFAFAF;">
+  <ion-card>
+    <ion-card-header>Trip Details</ion-card-header>
+    <ion-card-content>
+      <div text-center>
+        <h1> {{ trip.departurePoint }} <ion-icon name="arrow-round-forward"></ion-icon> {{ trip.destination }} </h1><br>
+        <p>{{ trip.time }}</p><br><br>
+      </div>
+    </ion-card-content>
+  </ion-card>
   <ion-card *ngFor="let drv of (driver | async)?.results">
+    <ion-card-header>Driver Details</ion-card-header>
       <ion-card-content>
         <div text-center>
           <img class="center" src="https://cs-192-iskuber-crumblethorn.c9users.io{{drv.userImage}}" style="width:160px;height:160px;border-radius:80px;">
@@ -50,11 +60,7 @@
           </ion-col>
         </ion-row></ion-grid>
         <br>
-        <div text-center>
-          <h1> {{ trip.departurePoint }} <ion-icon name="arrow-round-forward"></ion-icon> {{ trip.destination }} </h1><br>
-          <p>{{ trip.time }}</p><br><br>
-          <button ion-button color="secondary" (click) = "sendRequest(trip,drv)" block>Send Request</button>
-        </div>
+        <button ion-button color="secondary" (click) = "sendRequest(trip,drv)" block>Send Request</button>
       </ion-card-content>
     </ion-card>
 </ion-content>
