@@ -17,7 +17,7 @@
   Client group: CS 192
   Purpose of code: main HTML framework
 -->
-<ion-menu [content]="content">
+<ion-menu persistent="true" [content]="content">
 
     <ion-header>
         <ion-toolbar color="secondary">
@@ -31,7 +31,7 @@
                 <img src="https://cs-192-iskuber-crumblethorn.c9users.io{{usp.user.image}}" style="width:160px;height:160px;border-radius:80px;">
                 <h1>{{ usp.user.legalName }}</h1>
             </ion-item>
-            <button ion-item (click)="openPage(homePage)">
+            <button ion-item (click)="openPage(1)">
                 <ion-grid><ion-row>
                     <ion-col col-2><ion-icon name="home"></ion-icon></ion-col>
                     <ion-col>Home</ion-col>
@@ -41,13 +41,13 @@
                 <ion-icon name="md-map"></ion-icon>
                 &nbsp;&nbsp;Find New Trips
             </ion-list-header>
-            <button ion-item (click)="openPage(tripListPage)">
+            <button ion-item (click)="openPage(2)">
                 <ion-grid><ion-row>
                     <ion-col col-2><ion-icon name="briefcase"></ion-icon></ion-col>
                     <ion-col>View All Trips</ion-col>
                 </ion-row></ion-grid>
             </button>
-            <button ion-item (click)="openPage(driverListPage)">
+            <button ion-item (click)="openPage(3)">
                 <ion-grid><ion-row>
                     <ion-col col-2><ion-icon name="people"></ion-icon></ion-col>
                     <ion-col>View List of Drivers</ion-col>
@@ -57,13 +57,19 @@
             <ion-list-header>
                 <ion-icon name="hammer"></ion-icon>&nbsp;&nbsp;Manage Your Account
             </ion-list-header>
-            <button ion-item (click)="openPage(currentTripsPage)">
+            <button ion-item (click)="openPage(4)">
                 <ion-grid><ion-row>
                     <ion-col col-2><ion-icon name="briefcase"></ion-icon></ion-col>
                     <ion-col>Your Trips</ion-col>
                 </ion-row></ion-grid>
             </button>
-            <button ion-item (click)="openPage(pendingRequestsPage)">
+            <button ion-item (click)="openPage(5)">
+                <ion-grid><ion-row>
+                    <ion-col col-2><ion-icon name="warning"></ion-icon></ion-col>
+                    <ion-col>Your Pending<br>Requests</ion-col>
+                </ion-row></ion-grid>
+            </button>
+            <button ion-item (click)="openPage(6)">
                 <ion-grid><ion-row>
                     <ion-col col-2><ion-icon name="alert"></ion-icon></ion-col>
                     <ion-col>Pending Passenger<br>Requests</ion-col>
@@ -73,7 +79,7 @@
             <ion-list-header>
                 <ion-icon name="settings"></ion-icon>&nbsp;&nbsp;Settings
             </ion-list-header>
-            <button ion-item (click)="openPage(changeUser)">
+            <button ion-item (click)="openPage(7)">
                 <ion-grid><ion-row>
                     <ion-col col-2><ion-icon name="person"></ion-icon></ion-col>
                     <ion-col>Change User</ion-col>

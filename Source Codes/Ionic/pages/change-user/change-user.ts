@@ -22,7 +22,6 @@ import { UserServiceProvider } from '../../providers/user-service/user-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
-import { AlertController } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
 
@@ -34,17 +33,11 @@ import { HomePage } from '../home/home';
 })
 export class ChangeUserPage {
     users: Observable<any>;
-    constructor(public navCtrl: NavController, public navParams: NavParams, public dataServiceProvider: DataServiceProvider, public usp: UserServiceProvider, public alertCtrl: AlertController) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public dataServiceProvider: DataServiceProvider, public usp: UserServiceProvider) {
         this.users = this.dataServiceProvider.getUsers();
     }
     changeUsr(user){
         this.usp.updateUser(user);
-        let alert = this.alertCtrl.create({
-            title: 'Success!',
-            subTitle: 'User changed to ' + this.usp.user.legalName + '.',
-            buttons: ['OK']
-        });
-        alert.present();
         this.navCtrl.setRoot(HomePage)
     }
     ionViewDidLoad() {

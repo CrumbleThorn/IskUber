@@ -1,0 +1,79 @@
+<!--
+  This is a course requirement for CS 192 Software Engineering II
+  under the supervision of Asst. Prof. Ma. Rowena C. Solamo of the
+  Department of Computer Science, College of Engineering,
+  University of the Philippines, Diliman for the AY 2015-2016
+
+  Code author: Luigi del Rosario
+
+  Code History:
+  Programmer            Date        Description
+  Luigi del Rosario     4/21/18     File generation, added tags and cards
+
+  File creation date: 4/21/18
+  Development Group: Luigi del Rosario, Nicole Bilaw, Gabe Tamayo
+  Client group: CS 192
+  Purpose of code: view of send request page
+-->
+<ion-header>
+  <ion-navbar hideBackButton="true">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    <ion-title>Pending Requests</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding style="background-image: url('assets/imgs/bg.jpg');">
+  <ion-card>
+  <ion-card-content>
+    <p>
+        Here are all your pending requests.
+    </p>
+    <ion-list *ngIf="requests | async as req; else loading">
+      <div *ngIf="req.results[0].requestID; else none">
+        <ion-item *ngFor="let request of req.results">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-auto>
+                <ion-avatar item-start>
+                  <img src="https://cs-192-iskuber-crumblethorn.c9users.io{{request.driverImage}}">
+                </ion-avatar>
+              </ion-col>
+              <ion-col>
+                <ion-row><h2>{{request.driverName}}</h2></ion-row>
+                <ion-row><p>{{request.driverContactNo}}</p></ion-row>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-auto>
+                {{ request.departurePoint }} <ion-icon name="arrow-round-forward"></ion-icon> {{ request.destination }}
+              </ion-col>
+              <ion-col text-right>
+                {{request.time}}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </div>
+    </ion-list>
+  </ion-card-content>
+</ion-card>
+</ion-content>
+
+<ng-template #none>
+  <div text-center>
+      <br><br>
+      No requests to show.
+      <br><br>
+  </div>
+</ng-template>
+
+<ng-template #loading>
+  <div text-center>
+      <br><br>
+      Loading...
+      <br><br>
+  </div>
+</ng-template>

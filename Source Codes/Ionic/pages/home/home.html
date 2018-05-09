@@ -55,6 +55,7 @@
                         <div class="card-subtitle" style="text-shadow: 2px 2px 10px #000000;"><br>See if anyone could pick you up<br>for your next trip!</div>
                     </ion-card>
                 </button>
+                
                 <button ion-item (click)="openPage(1)">
                     <ion-card>
                         <img src="assets/imgs/cars.jpg">
@@ -72,6 +73,9 @@
                         <ion-icon name="briefcase"></ion-icon>&nbsp;&nbsp;Manage Trips
                 </button>
                 <button ion-item (click)="openPage(3)">
+                        <ion-icon name="warning"></ion-icon>&nbsp;&nbsp;Your Pending Requests
+                </button>
+                <button ion-item (click)="openPage(4)">
                         <ion-icon name="md-alert"></ion-icon>&nbsp;&nbsp;Manage Passenger Requests
                 </button>
             </ion-list>

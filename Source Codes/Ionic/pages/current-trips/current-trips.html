@@ -18,7 +18,7 @@
   Purpose of code: view of current trips
 -->
 <ion-header>
-  <ion-navbar>
+  <ion-navbar hideBackButton="true">
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
@@ -30,34 +30,81 @@
 <ion-content padding style="background-image: url('assets/imgs/bg.jpg');">
     <ion-card>
     <ion-card-content>
-      <p>
-          Here are all the trips you're a part of.
-      </p>
-      <ion-list>
-        <ion-item *ngFor="let trip of (trips | async)?.results">
-          <ion-grid>
-            <ion-row>
-              <ion-col col-auto>
-                <ion-avatar item-start>
-                  <img src="https://cs-192-iskuber-crumblethorn.c9users.io{{trip.driverImage}}">
-                </ion-avatar>
-              </ion-col>
-              <ion-col>
-                <ion-row><h2>{{trip.driverName}}</h2></ion-row>
-                <ion-row><p>{{trip.driverContactNo}}</p></ion-row>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col col-auto>
-                {{ trip.departurePoint }} <ion-icon name="arrow-round-forward"></ion-icon> {{ trip.destination }}
-              </ion-col>
-              <ion-col text-right>
-                {{trip.time}}
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-item>
+      <h2>Trips you're a part of:</h2><br>
+      <ion-list *ngIf="trips | async as trp; else loading">
+        <div *ngIf="trp.results[0].driverName; else none">
+          <ion-item *ngFor="let trip of trp.results">
+            <ion-grid>
+              <ion-row>
+                <ion-col col-auto>
+                  <ion-avatar item-start>
+                    <img src="https://cs-192-iskuber-crumblethorn.c9users.io{{trip.driverImage}}">
+                  </ion-avatar>
+                </ion-col>
+                <ion-col>
+                  <ion-row><h2>{{trip.driverName}}</h2></ion-row>
+                  <ion-row><p>{{trip.driverContactNo}}</p></ion-row>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-auto>
+                  {{ trip.departurePoint }} <ion-icon name="arrow-round-forward"></ion-icon> {{ trip.destination }}
+                </ion-col>
+                <ion-col text-right>
+                  {{trip.time}}
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </div>
       </ion-list>
     </ion-card-content>
   </ion-card>
+
+  <ion-card>
+      <ion-card-content>
+        <h2>Trips you manage:</h2><br>
+        <ion-list *ngIf="driverTrips | async as dtr; else loading">
+          <div *ngIf="dtr.results[0].schedID; else noDriverTrips">
+            <ion-item *ngFor="let trip of dtr.results">
+              <ion-grid>
+                <ion-row>
+                  <ion-col col-auto>
+                    {{ trip.departurePoint }} <ion-icon name="arrow-round-forward"></ion-icon> {{ trip.destination }}
+                  </ion-col>
+                  <ion-col text-right>
+                    {{trip.time}}
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+          </div>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
 </ion-content>
+
+<ng-template #none>
+  <div text-center>
+      <br>
+      You are not part of any trips.
+      <br>Try finding a new one?
+      <br><br>
+  </div>
+</ng-template>
+  
+<ng-template #noDriverTrips>
+  <div text-center>
+      <br>
+      You do not manage any trips.
+      <br><br>
+  </div>
+</ng-template>
+
+<ng-template #loading>
+  <div text-center>
+      <br>
+      Loading...
+      <br><br>
+  </div>
+</ng-template>

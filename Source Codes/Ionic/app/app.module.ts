@@ -38,6 +38,7 @@ import { TripDetailsPage } from '../pages/trip-details/trip-details';
 import { CurrentTripsPage } from '../pages/current-trips/current-trips';
 import { PassengerListPage } from '../pages/passenger-list/passenger-list'
 import { PassengerDetailsPage } from '../pages/passenger-details/passenger-details'
+import { PendingRequestsPage } from '../pages/pending-requests/pending-requests'
 import { SendRequestPage } from '../pages/send-request/send-request'
 import { ChangeUserPage } from '../pages/change-user/change-user'
 import { HomePage } from '../pages/home/home';
@@ -61,6 +62,7 @@ import { UserServiceProvider } from '../providers/user-service/user-service';
     PassengerDetailsPage,
     SendRequestPage,
     ChangeUserPage,
+    PendingRequestsPage,
     HomePage
   ],
   imports: [
@@ -80,6 +82,7 @@ import { UserServiceProvider } from '../providers/user-service/user-service';
     PassengerDetailsPage,
     SendRequestPage,
     ChangeUserPage,
+    PendingRequestsPage,
     HomePage
   ],
   providers: [

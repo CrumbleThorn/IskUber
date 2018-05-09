@@ -8,23 +8,23 @@
 
   Code History:
   Programmer            Date        Description
-  Luigi del Rosario     2/918      File generation
+  Luigi del Rosario     4/21/18     File generation, addied call to Data Service provider
 
-  File creation date: 2/9/18
+  File creation date: 4/21/18
   Development Group: Luigi del Rosario, Nicole Bilaw, Gabe Tamayo
   Client group: CS 192
-  Purpose of code: module of current trips
+  Purpose of code: module of pending requests page
 */
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { CurrentTripsPage } from './current-trips';
+import { PendingRequestsPage } from './pending-requests';
 
 @NgModule({
   declarations: [
-    CurrentTripsPage,
+    PendingRequestsPage,
   ],
   imports: [
-    IonicPageModule.forChild(CurrentTripsPage),
+    IonicPageModule.forChild(PendingRequestsPage),
   ],
 })
-export class CurrentTripsPageModule {}
+export class PendingRequestsPageModule {}

@@ -29,7 +29,8 @@ import { DriverListPage } from '../pages/driver-list/driver-list';
 import { PassengerListPage } from '../pages/passenger-list/passenger-list';
 import { TripListPage } from '../pages/trip-list/trip-list';
 import { CurrentTripsPage } from '../pages/current-trips/current-trips';
-import { ChangeUserPage } from '../pages/change-user/change-user'
+import { ChangeUserPage } from '../pages/change-user/change-user';
+import { PendingRequestsPage } from '../pages/pending-requests/pending-requests';
 import { HomePage } from '../pages/home/home';
 
 //user service provider
@@ -41,12 +42,6 @@ import { UserServiceProvider } from '../providers/user-service/user-service';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage = ChangeUserPage;
-  homePage: any;
-  driverListPage: any;
-  tripListPage: any;
-  pendingRequestsPage: any;
-  currentTripsPage: any;
-  changeUser: any;
 
   constructor(platform: Platform, public menu: MenuController, statusBar: StatusBar, splashScreen: SplashScreen, public usp: UserServiceProvider) {
 
@@ -56,18 +51,42 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
-    this.homePage = { title: 'Home', component: HomePage };
-    this.driverListPage = { title: 'Driver List', component: DriverListPage };
-    this.tripListPage = { title: 'Your Trips', component: TripListPage };
-    this.pendingRequestsPage = { title: 'Pending Passenger Requests', component: PassengerListPage };
-    this.currentTripsPage = {title: 'Your Trips', component: CurrentTripsPage};
-    this.changeUser = { title: 'Change User', component: ChangeUserPage};
   }
   openPage(page) {
     // close the menu when clicking a link from the menu
     this.menu.close();
     // navigate to the new page if it is not the current page
-    this.nav.setRoot(page.component);
+    console.log("switching page");
+    switch(page){
+      case 1:{
+        this.nav.setRoot(HomePage);
+        break;
+      }
+      case 2:{
+        this.nav.setRoot(TripListPage);
+        break;
+      }
+      case 3:{
+        this.nav.setRoot(DriverListPage);
+        break;
+      }
+      case 4:{
+        this.nav.setRoot(CurrentTripsPage);
+        break;
+      }
+      case 5:{
+        this.nav.setRoot(PendingRequestsPage);
+        break;
+      }
+      case 6:{
+        this.nav.setRoot(PassengerListPage);
+        break;
+      }
+      case 7:{
+        this.nav.setRoot(ChangeUserPage);
+        break;
+      }
+    }
   }
 }
 

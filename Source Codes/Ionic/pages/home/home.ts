@@ -22,7 +22,8 @@ import { UserServiceProvider } from '../../providers/user-service/user-service';
 import { DriverListPage } from '../driver-list/driver-list';
 import { PassengerListPage } from '../passenger-list/passenger-list';
 import { TripListPage } from '../trip-list/trip-list';
-import { CurrentTripsPage } from '../current-trips/current-trips'
+import { CurrentTripsPage } from '../current-trips/current-trips';
+import { PendingRequestsPage } from '../pending-requests/pending-requests';
 
 @IonicPage()
 @Component({
@@ -42,14 +43,19 @@ export class HomePage {
 
     openPage(page){
       console.log(page)
-        if(page==0){
-            this.navCtrl.setRoot(TripListPage).catch(() => console.log('Error loading page.'));
-        } else if (page==1) {
-            this.navCtrl.setRoot(DriverListPage).catch(() => console.log('Error loading page.'));
+        if(page == 0){
+            this.navCtrl.push(TripListPage).catch(() => console.log('Error loading page.'));
+        } else if (page == 1) {
+            this.navCtrl.push(DriverListPage).catch(() => console.log('Error loading page.'));
         } else if (page == 2) {
-            this.navCtrl.setRoot(CurrentTripsPage).catch(() => console.log('Error loading page.'));
+            this.navCtrl.push(CurrentTripsPage).catch(() => console.log('Error loading page.'));
         } else if (page == 3) {
-            this.navCtrl.setRoot(PassengerListPage).catch(() => console.log('Error loading page.'));
+            console.log('page:', PendingRequestsPage);
+            this.navCtrl.push(PendingRequestsPage).catch(() => console.log('Error loading page.'));
+        } else if (page == 4) {
+            console.log('page:', PassengerListPage);
+            this.navCtrl.push(PassengerListPage).catch(() => console.log('Error loading page.'));
         }
+        console.log("was i successful?");
     }
 }

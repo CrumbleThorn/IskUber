@@ -17,7 +17,7 @@
   Purpose of code: view of passenger list page
 -->
 <ion-header>
-  <ion-navbar>
+  <ion-navbar hideBackButton="true">
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
@@ -31,12 +31,31 @@
     <ion-card-content>
       <p>
           Tap a request to view details:
+          <br><br>
       </p>
-      <ion-list>
-        <button ion-item *ngFor="let request of (requests | async)?.results" (click)="openDetails(request)">
-              <b>{{ request.legalName }}</b>&nbsp;&nbsp;{{ request.departurePoint }} <ion-icon name="arrow-round-forward"></ion-icon> {{ request.destination }}
-        </button>
+      <ion-list *ngIf="requests | async as req; else loading">
+        <div *ngIf="req.results[0].requestID; else none">
+          <button ion-item *ngFor="let request of req.results" (click)="openDetails(request)">
+                <b>{{ request.legalName }}</b>&nbsp;&nbsp;{{ request.departurePoint }} <ion-icon name="arrow-round-forward"></ion-icon> {{ request.destination }}
+          </button>
+        </div>
       </ion-list>
     </ion-card-content>
   </ion-card>
 </ion-content>
+
+<ng-template #none>
+    <div text-center>
+        <br><br>
+        No requests to show.
+        <br><br>
+    </div>
+  </ng-template>
+  
+  <ng-template #loading>
+    <div text-center>
+        <br><br>
+        Loading...
+        <br><br>
+    </div>
+  </ng-template>

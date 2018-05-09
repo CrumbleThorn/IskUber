@@ -8,9 +8,9 @@
 
   Code History:
   Programmer            Date        Description
-  Luigi del Rosario     3/30/18     File generation
+  Luigi del Rosario     2/9/18     File generation
 
-  File creation date: 3/30/18
+  File creation date: 2/9/18
   Development Group: Luigi del Rosario, Nicole Bilaw, Gabe Tamayo
   Client group: CS 192
   Purpose of code: script for current trips
@@ -30,14 +30,21 @@ import { Observable } from 'rxjs/Observable';
 })
 export class CurrentTripsPage {
   trips: Observable<any>;
+  driverTrips: Observable<any>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
       public dsp: DataServiceProvider, public usp: UserServiceProvider) {
       //Here we should be able to get trips of the USER.
       this.trips = dsp.getTrips();
       this.trips.subscribe(data => {
-        console.log('success? ', data)
+        console.log('all trips: ', data)
       })
+      this.driverTrips = dsp.getDriverTrips(this.usp.user.userID);
+      console.log("Fetching driver trips...");
+      this.driverTrips
+        .subscribe(data => {
+          console.log('driver trips: ', data)
+        });
   }
 
   ionViewDidLoad() {

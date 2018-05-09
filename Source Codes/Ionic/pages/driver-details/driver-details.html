@@ -21,9 +21,6 @@
 <ion-header>
 
   <ion-navbar>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
     <ion-title>{{ driver.driverName }}</ion-title>
   </ion-navbar>
 
@@ -58,12 +55,13 @@
     </ion-card>
     <ion-card>
         <ion-card-header>
-            <h4>Driver's Trips</h4>
-            Click on a trip to send a request:
+            Driver's Trips
         </ion-card-header>
         <ion-card-content>
+          <div *ngIf="driverTrips | async as dt; else loading">
+            Click on a trip to send a request:<br>
             <ion-list>
-              <button ion-item *ngFor="let trip of (driverTrips | async)?.results"  (click) = "sendRequest(trip)">
+              <button ion-item *ngFor="let trip of dt.results"  (click) = "sendRequest(trip)">
                 <ion-grid><ion-row>
                   <ion-col col-auto>
                     {{ trip.departurePoint }} <ion-icon name="arrow-round-forward"></ion-icon> {{ trip.destination }}
@@ -76,6 +74,15 @@
                 </ion-row></ion-grid>
               </button>
             </ion-list>
+          </div>
         </ion-card-content>
     </ion-card>
 </ion-content>
+  
+  <ng-template #loading>
+    <div text-center>
+        <br><br>
+        Loading...
+        <br><br>
+    </div>
+  </ng-template>

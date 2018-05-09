@@ -53,6 +53,11 @@ export class DataServiceProvider {
     return this.http.get('https://cs-192-iskuber-crumblethorn.c9users.io/dbInterface.php', { params: params });
   }
 
+  getPassengers(schedID){
+    let params = {'command': 'QUERY', 'spec': 'PASSENGERS', 'schedID': JSON.stringify(schedID)};
+    return this.http.get('https://cs-192-iskuber-crumblethorn.c9users.io/dbInterface.php', { params: params });
+  }
+
   getTrips() {
     let params = {'command': 'QUERY', 'spec': 'USERTRIPS', 'passengerID': JSON.stringify(this.usp.user.userID)};
     return this.http.get('https://cs-192-iskuber-crumblethorn.c9users.io/dbInterface.php', { params: params });
@@ -74,6 +79,11 @@ export class DataServiceProvider {
 
   getRequests() {
     let params = {'command': 'QUERY', 'spec': 'DRIVERREQUESTS', 'driverID': JSON.stringify(this.usp.user.userID)};
+    return this.http.get('https://cs-192-iskuber-crumblethorn.c9users.io/dbInterface.php', { params: params });
+  }
+
+  getPendingRequests() {
+    let params = {'command': 'QUERY', 'spec': 'USERREQUESTS', 'userID': JSON.stringify(this.usp.user.userID)};
     return this.http.get('https://cs-192-iskuber-crumblethorn.c9users.io/dbInterface.php', { params: params });
   }
 
